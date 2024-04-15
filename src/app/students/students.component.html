@@ -1,0 +1,37 @@
+<section class="student-list">
+  <!-- igualo al valor opuesto -->
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="showStudents = !showStudents"
+  >
+    Mostrar listado
+  </button>
+  <ul *ngIf="showStudents" class="student-ul d-flex flex-column">
+    @for (student of students; track $index) {
+    <li
+      [ngClass]="
+        student.isApproved ? 'text-g' : 'text-r'
+      "
+    >
+      {{ $index }}-{{ student.name }}
+    {{ student.lastName }}
+      <span
+        [ngClass]="
+          student.email.includes('@example.com')
+            ? 'email-b'
+            : 'email-d'
+        "
+      >
+        {{ student.email }}
+      </span>
+      <button (click)="deleteStudent(student.email)"  mat-raised-button class="">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </li>
+    }
+  </ul>
+  <div *ngIf="!showStudents" class="">
+    <h2>No hay registros</h2>
+  </div>
+</section>

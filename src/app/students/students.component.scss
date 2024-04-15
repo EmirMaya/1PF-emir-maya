@@ -1,0 +1,45 @@
+.student-list {
+    background-color: #fdfdfd;
+    margin: 40px 30px 40px 450px;
+    padding: 50px;
+}
+
+.student-ul {
+    width: 100%;
+
+    margin-top: 15px;
+    li {
+        margin: 0;
+        list-style-type: none;
+        padding: 8px 4px;
+        font-size: 17px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 10px;
+        border-bottom: #a8a8a8 solid 1px;
+    }
+}
+
+.text-g {
+    color: #00be7e;
+    background-color: #8effd9;
+}
+
+.text-r {
+    background-color: #ff8b8b;
+    color: #db0000;
+}
+
+
+.email-b {
+   
+    color: #0073ff;
+}
+
+.email-d {
+  
+    color: #00118e;
+}
+
+
