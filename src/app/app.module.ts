@@ -10,6 +10,7 @@ import { StudentsComponent } from './students/students.component';
 import { StudentFormComponent } from './student-form/student-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FontSizeDirective } from './font-size.directive';
+import { DashboardModule } from './layouts/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FontSizeDirective } from './font-size.directive';
     AppRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
+    DashboardModule,
   ],
   providers: [
     provideAnimationsAsync()
