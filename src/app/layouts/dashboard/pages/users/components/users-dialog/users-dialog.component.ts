@@ -14,20 +14,19 @@ export class UsersDialogComponent {
     this.studentForm = this.formBuilder.group({
       firstName: [
         '',
-        Validators.required,
-        Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$'),
+        // Validators.required,
+        // Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$'),
       ],
       lastName: [
         '',
-        Validators.required,
-        Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$'),
+        // Validators.required,
+        // Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$'),
       ],
       email: [
         '',
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'),
+        // Validators.required,
+        // Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'),
       ],
-      approved: ['', Validators.required],
     });
   }
 
@@ -35,6 +34,8 @@ export class UsersDialogComponent {
     if (this.studentForm.invalid) {
       this.studentForm.markAllAsTouched();
     } else {
+      // const formData = this.studentForm.value;
+      // formData.isApproved = formData.isApproved === 'si';
       this.matDialogRef.close(this.studentForm.value);
     }
   }

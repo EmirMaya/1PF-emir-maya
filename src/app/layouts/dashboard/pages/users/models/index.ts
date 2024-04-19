@@ -3,6 +3,5 @@ export interface IStudent {
     firstName: string;
     lastName: string;
     email: string;
-    isApproved: boolean;
     createdAt: Date;
 }
