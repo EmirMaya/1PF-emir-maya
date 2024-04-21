@@ -10,23 +10,29 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class UsersDialogComponent {
   public studentForm: FormGroup = new FormGroup({});
 
-  constructor(private formBuilder: FormBuilder, private matDialogRef: MatDialogRef<UsersDialogComponent>) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private matDialogRef: MatDialogRef<UsersDialogComponent>
+  ) {
     this.studentForm = this.formBuilder.group({
       firstName: [
         '',
-        // Validators.required,
-        // Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$'),
+        [Validators.required, Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$')],
       ],
       lastName: [
         '',
-        // Validators.required,
-        // Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$'),
+        [Validators.required, Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$')],
       ],
       email: [
         '',
-        // Validators.required,
-        // Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'),
+        [
+          Validators.required,
+          Validators.pattern(
+            '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'
+          ),
+        ],
       ],
+      role: ['STUDENT', [Validators.required]],
     });
   }
 

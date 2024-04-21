@@ -16,14 +16,15 @@ export class UsersComponent {
       firstName: 'Franco',
       lastName: 'Armani',
       email: 'armani@gmail.com',
+      role: 'ADMIN',
       createdAt: new Date(),
     },
     {
       id: 2,
       firstName: 'Héctor',
       lastName: 'Herrera',
-
       email: 'herrera@example.com',
+      role: 'STUDENT',
       createdAt: new Date(),
     },
     {
@@ -31,6 +32,7 @@ export class UsersComponent {
       firstName: 'Paulo',
       lastName: 'Díaz',
       email: 'diaz@example.com',
+      role: 'STUDENT',
       createdAt: new Date(),
     },
     {
@@ -38,6 +40,7 @@ export class UsersComponent {
       firstName: 'Leandro',
       lastName: 'Gonzalez Pirez',
       email: 'pirez@example.com',
+      role: 'STUDENT',
       createdAt: new Date(),
     },
     {
@@ -45,6 +48,7 @@ export class UsersComponent {
       firstName: 'Enzo',
       lastName: 'Díaz',
       email: 'enzodiaz@gmail.com',
+      role: 'STUDENT',
       createdAt: new Date(),
     },
     {
@@ -52,6 +56,7 @@ export class UsersComponent {
       firstName: 'Ignacio',
       lastName: 'Fernández',
       email: 'fernandez@example.com',
+      role: 'STUDENT',
       createdAt: new Date(),
     },
     {
@@ -59,6 +64,7 @@ export class UsersComponent {
       firstName: 'Rodrigo',
       lastName: 'Villagra',
       email: 'villagra@gmail.com',
+      role: 'STUDENT',
       createdAt: new Date(),
     },
     {
@@ -66,6 +72,7 @@ export class UsersComponent {
       firstName: 'Esequiel',
       lastName: 'Barco',
       email: 'barco@example.com',
+      role: 'STUDENT',
       createdAt: new Date(),
     },
     {
@@ -73,6 +80,7 @@ export class UsersComponent {
       firstName: 'Claudio',
       lastName: 'Echeverri',
       email: 'echeverri@gmail.com',
+      role: 'STUDENT',
       createdAt: new Date(),
     },
     {
@@ -80,6 +88,7 @@ export class UsersComponent {
       firstName: 'Facundo',
       lastName: 'Colidio',
       email: 'colidio@example.com',
+      role: 'STUDENT',
       createdAt: new Date(),
     },
     {
@@ -87,6 +96,7 @@ export class UsersComponent {
       firstName: 'Miguel Ángel',
       lastName: 'Borja',
       email: 'borja@example.com',
+      role: 'STUDENT',
       createdAt: new Date(),
     },
   ];
@@ -98,6 +108,7 @@ export class UsersComponent {
     'firstName',
     'lastName',
     'email',
+    'role',
     'createdAt',
   ];
   dataSource = [...this.students];
@@ -111,8 +122,10 @@ export class UsersComponent {
       .subscribe({
         next: (res) => {
           if (res) {
+            res.id = new Date().getTime().toString().substring(0, 4);
+            res.createdAt = new Date();
             this.dataSource = [...this.dataSource, res];
-            console.log(this.dataSource);   
+            console.log(this.dataSource);
           }
         },
       });
@@ -127,5 +140,9 @@ export class UsersComponent {
   removeData() {
     this.dataSource.pop();
     this.table?.renderRows();
+  }
+
+  onDelete(id: number): void {
+    this.dataSource = this.dataSource.filter((data) => data.id !== id);
   }
 }

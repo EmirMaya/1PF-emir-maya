@@ -23,7 +23,6 @@ export class StudentsService {
 
   deleteStudent(email: string) {
     const currentStudents = this.studentsSubject.value;
-    console.log(currentStudents);
     const updatedStudents = currentStudents.filter(student => {student.email !== email});
     this.studentsSubject.next(updatedStudents);
   }
