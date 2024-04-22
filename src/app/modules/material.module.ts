@@ -11,10 +11,14 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
+import { FormValidationsErrorsPipe } from './pipes/form-validations-errors.pipe';
+
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    FormValidationsErrorsPipe
+  ],
   imports: [CommonModule],
   exports: [
     MatButtonModule,
@@ -27,7 +31,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatToolbarModule,
     MatTableModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormValidationsErrorsPipe
   ],
 })
 export class MaterialModule {}

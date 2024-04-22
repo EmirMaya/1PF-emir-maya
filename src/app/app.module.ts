@@ -6,20 +6,12 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MaterialModule } from './modules/material.module';
 import { LayoutComponent } from './layout/layout.component';
-import { StudentsComponent } from './students/students.component';
-import { StudentFormComponent } from './student-form/student-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FontSizeDirective } from './font-size.directive';
 import { DashboardModule } from './layouts/dashboard/dashboard.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LayoutComponent,
-    StudentsComponent,
-    StudentFormComponent,
-    FontSizeDirective,
-  ],
+  declarations: [AppComponent, LayoutComponent, FontSizeDirective],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,9 +19,7 @@ import { DashboardModule } from './layouts/dashboard/dashboard.module';
     ReactiveFormsModule,
     DashboardModule,
   ],
-  providers: [
-    provideAnimationsAsync()
-  ],
-  bootstrap: [AppComponent]
+  providers: [provideAnimationsAsync()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

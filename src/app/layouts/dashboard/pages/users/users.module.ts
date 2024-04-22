@@ -10,7 +10,7 @@ import { UsersDialogComponent } from './components/users-dialog/users-dialog.com
 @NgModule({
   declarations: [
     UsersComponent,
-    UsersDialogComponent
+    UsersDialogComponent,
   ],
   imports: [
     CommonModule,

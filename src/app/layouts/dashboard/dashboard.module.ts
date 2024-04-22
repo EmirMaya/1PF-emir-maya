@@ -4,6 +4,7 @@ import { MaterialModule } from '../../modules/material.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { UsersModule } from './pages/users/users.module';
+import { PipesDirectivasModule } from './pages/pipes-directivas/pipes-directivas.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { UsersModule } from './pages/users/users.module';
     CommonModule,
     DashboardRoutingModule,
     MaterialModule,
-    UsersModule
+    UsersModule,
+    PipesDirectivasModule
   ],
   exports: [
     DashboardComponent,

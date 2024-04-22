@@ -42,6 +42,14 @@ export class UsersDialogComponent {
     }
   }
 
+  get firstNameControl() {
+    return this.studentForm.get('firstName');
+  }
+
+  get lastNameControl() {
+    return this.studentForm.get('lastName');
+  }
+
   onSave(): void {
     if (this.studentForm.invalid) {
       this.studentForm.markAllAsTouched();
