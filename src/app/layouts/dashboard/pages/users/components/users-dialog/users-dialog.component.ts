@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { IStudent } from '../../models';
 
 @Component({
   selector: 'app-users-dialog',
@@ -12,7 +13,8 @@ export class UsersDialogComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private matDialogRef: MatDialogRef<UsersDialogComponent>
+    private matDialogRef: MatDialogRef<UsersDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) private data?: IStudent
   ) {
     this.studentForm = this.formBuilder.group({
       firstName: [
@@ -34,6 +36,10 @@ export class UsersDialogComponent {
       ],
       role: ['STUDENT', [Validators.required]],
     });
+
+    if (this.data) {
+      this.studentForm.patchValue(this.data);
+    }
   }
 
   onSave(): void {

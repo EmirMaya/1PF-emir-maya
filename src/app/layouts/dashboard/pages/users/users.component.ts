@@ -110,22 +110,29 @@ export class UsersComponent {
     'email',
     'role',
     'createdAt',
+    'actions',
   ];
   dataSource = [...this.students];
 
   @ViewChild(MatTable) table: MatTable<IStudent> | undefined;
 
-  openDialog(): void {
+  openDialog(editingUser?: IStudent): void {
     this.matDialog
-      .open(UsersDialogComponent)
+      .open(UsersDialogComponent, {
+        data: editingUser,
+      })
       .afterClosed()
       .subscribe({
         next: (res) => {
           if (res) {
-            res.id = new Date().getTime().toString().substring(0, 4);
-            res.createdAt = new Date();
-            this.dataSource = [...this.dataSource, res];
-            console.log(this.dataSource);
+            if (editingUser) {
+              this.dataSource = this.dataSource.map((data) => data.id === editingUser.id ? {...data, ...res} : data);
+            } else {
+              res.id = new Date().getTime().toString().substring(0, 4);
+              res.createdAt = new Date();
+              this.dataSource = [...this.dataSource, res];
+              // console.log(this.dataSource);
+            }
           }
         },
       });
@@ -143,6 +150,8 @@ export class UsersComponent {
   }
 
   onDelete(id: number): void {
-    this.dataSource = this.dataSource.filter((data) => data.id !== id);
+    if (confirm('Are you sure you want to delete?')) {
+      this.dataSource = this.dataSource.filter((data) => data.id !== id);
+    }
   }
 }
