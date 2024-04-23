@@ -7,18 +7,34 @@
   </div>
 </mat-toolbar>
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer [opened]="!isMobile()" [mode]="isMobile() ? 'over' : 'side'" #drawer class="example-sidenav">
-    <p>Auto-resizing sidenav</p>
-    @if (showFiller) {
-    <p>Lorem, ipsum dolor sit amet consectetur.</p>
-    }
+  <mat-drawer
+    [opened]="!isMobile()"
+    [mode]="isMobile() ? 'over' : 'side'"
+    #drawer
+    class="example-sidenav"
+  >
     <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
+      Mi perfil
     </button>
+    @if (showFiller) {
+    <p class="p-3">Lorem, ipsum dolor sit amet consectetur.</p>
+    }
+    <ul class="nav-ul d-flex flex-column gap-2 my-2 py-4">
+      <li class="nav-li">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-li">
+        <a class="nav-link" href="/">Cursos</a>
+      </li>
+      <li class="nav-li">
+        <a class="nav-link" href="/">Chat</a>
+      </li>
+      <li class="nav-li">
+        <a class="nav-link" href="/">Gestión</a>
+      </li>
+    </ul>
   </mat-drawer>
   <main class="m-4">
-    <app-users/>
+    <app-users />
   </main>
- 
 </mat-drawer-container>
-
