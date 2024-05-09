@@ -1,16 +1,25 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { IStudent } from './models';
 import { MatDialog } from '@angular/material/dialog';
 import { UsersDialogComponent } from './components/users-dialog/users-dialog.component';
+import {
+  Observable,
+  Subscription,
+  debounceTime,
+  delay,
+  distinctUntilChanged,
+  of,
+  takeUntil,
+} from 'rxjs';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
 })
-export class UsersComponent {
-  students: IStudent[] = [
+export class UsersComponent implements OnDestroy {
+  private students: IStudent[] = [
     {
       id: 1,
       firstName: 'Franco',
@@ -101,7 +110,9 @@ export class UsersComponent {
     },
   ];
 
-  constructor(private matDialog: MatDialog) {}
+  students$!: Observable<IStudent[]>;
+
+  private studentsSubscription: Subscription | undefined;
 
   displayedColumns: string[] = [
     'id',
@@ -112,10 +123,38 @@ export class UsersComponent {
     'createdAt',
     'actions',
   ];
-  dataSource = [...this.students];
 
   @ViewChild(MatTable) table: MatTable<IStudent> | undefined;
 
+  constructor(private matDialog: MatDialog) {
+    this.loadData();
+  }
+
+  ngOnDestroy(): void {
+    if (this.studentsSubscription) {
+      this.studentsSubscription.unsubscribe();
+    }
+  }
+
+  dataSource = [...this.students];
+  // Mock data retrieval using Promise
+  getDataPromise(): Promise<IStudent[]> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(this.students);
+      }, 1000);
+    });
+  }
+
+  // Mock data retrieval using Observable
+  getDataObservable(): Observable<IStudent[]> {
+    return of(this.students).pipe(delay(1000));
+  }
+
+  loadData() {
+    this.students$ = this.getDataObservable();
+    this.studentsSubscription = this.students$.subscribe();
+  }
   openDialog(editingUser?: IStudent): void {
     this.matDialog
       .open(UsersDialogComponent, {
@@ -126,7 +165,9 @@ export class UsersComponent {
         next: (res) => {
           if (res) {
             if (editingUser) {
-              this.dataSource = this.dataSource.map((data) => data.id === editingUser.id ? {...data, ...res} : data);
+              this.dataSource = this.dataSource.map((data) =>
+                data.id === editingUser.id ? { ...data, ...res } : data
+              );
             } else {
               res.id = new Date().getTime().toString().substring(0, 4);
               res.createdAt = new Date();
